@@ -1,0 +1,6 @@
+project_id       = "products-422104"
+region           = "us-east1"
+zone             = "us-east1-b"
+image_id         = "projects/debian-cloud/global/images/family/debian-10"
+public_key_path  = "~/.ssh/id_rsa.pub"
+key_name         = "id_rsa"

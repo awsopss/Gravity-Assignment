@@ -1,0 +1,57 @@
+Steps
+1. Install and Configure the Cloud Monitoring Agent
+The Cloud Monitoring agent collects system and application metrics from your VM instances. Install the agent on your GCE instance.
+
+# Connect to your instance
+gcloud compute ssh your-instance-name --zone=your-zone
+
+# Install the agent
+curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
+sudo bash add-monitoring-agent-repo.sh
+sudo apt-get update
+sudo apt-get install stackdriver-agent
+
+Start the agent:
+
+sudo service stackdriver-agent start
+
+2. Set Up Monitoring in Google Cloud Console
+Navigate to Cloud Monitoring:
+
+Go to the Google Cloud Console.
+Select Monitoring from the left-hand menu.
+Create a Dashboard:
+
+Click on Dashboards.
+Click Create Dashboard.
+Name your dashboard (e.g., "GCE Monitoring").
+Add Charts for CPU, Memory, and Disk Usage:
+
+Click Add Chart.
+For Resource Type, select gce_instance.
+For Metric, choose CPU utilization for CPU, Memory usage for memory, and Disk usage for disk.
+Configure the chart settings as needed and add it to your dashboard.
+
+
+3. Create an Alerting Policy for High CPU Usage
+Navigate to Alerting:
+
+In the Monitoring section of the Google Cloud Console, click on Alerting.
+Click Create Policy.
+Add a Condition:
+
+Click Add Condition.
+For Resource Type, select gce_instance.
+For Metric, select CPU utilization.
+Set the Condition to trigger when the CPU usage is above 80% for a specified duration (e.g., 5 minutes).
+Click Done.
+Add Notification Channel:
+
+Click Add Notification Channel.
+Select Email.
+Add your email address.
+Click Save.
+Name and Save the Alerting Policy:
+
+Name your alerting policy (e.g., "High CPU Usage Alert").
+Review the settings and click Create Policy.
